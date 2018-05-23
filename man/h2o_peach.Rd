@@ -13,27 +13,3 @@ h2o_peach(x, y, train.data, test.data, ntrees_opts = c(10000),
 \description{
 DNN peach
 }
-\examples{
-set.seed(960806)
-sample1<- sample(1:nrow(t.data1),round(nrow(t.data1)*0.8,0))
-train.data <- as.h2o(t.data1[sample1,])
-test.data <- as.h2o(t.data1[-sample1,])
-response1 <- "mean_price"
-response2 <- "trade"
-x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'b_prec')
-y = response2
-h2o_peach(x,y,train.data,test.data)
-
-gbm_sorted_grid <- h2o.getGrid(grid_id = "mygrid", sort_by = "mse")
-print(gbm_sorted_grid)
-best_model <- h2o.getModel(gbm_sorted_grid@model_ids[[1]])
-summary(best_model)
-
-dnn.pred <- as.numeric(h2o.predict(best_model, test.data))
-
-x<-as.data.frame(test.data$mean_price)
-y<-as.data.frame(dnn.pred$predict)
-
-cor(x$mean_price,y$predict)^2
-
-}

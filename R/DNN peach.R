@@ -1,6 +1,6 @@
 #' DNN peach
 #'
-#' @example set.seed(960806)
+#' @examples set.seed(960806)
 #' sample1<- sample(1:nrow(t.data1),round(nrow(t.data1)*0.8,0))
 #' train.data <- as.h2o(t.data1[sample1,])
 #' test.data <- as.h2o(t.data1[-sample1,])

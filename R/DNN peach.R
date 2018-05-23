@@ -6,7 +6,7 @@
 #' test.data <- as.h2o(t.data1[-sample1,])
 #' response1 <- "mean_price"
 #' response2 <- "trade"
-#' x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'')
+#' x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'b_prec')
 #' y = response2
 #' h2o_peach(x,y,train.data,test.data)
 #'

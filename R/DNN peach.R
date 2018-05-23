@@ -8,7 +8,7 @@
 #' response2 <- "trade"
 #' x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'')
 #' y = response2
-#' h2o_peach(x,y)
+#' h2o_peach(x,y,train.data,test.data)
 #'
 #' gbm_sorted_grid <- h2o.getGrid(grid_id = "mygrid", sort_by = "mse")
 #' print(gbm_sorted_grid)
@@ -24,7 +24,7 @@
 #' abline(0,1,col="red")
 #' @return
 #' @export
-h2o_peach<-function(x,y,
+h2o_peach<-function(x,y,train.data, test.data,
   ntrees_opts = c(10000),max_depth_opts = seq(1,20),min_rows_opts = c(1,5,10,20,50,100),
 learn_rate_opts = seq(0.001,0.01,0.001),sample_rate_opts = seq(0.3,1,0.05),col_sample_rate_opts = seq(0.3,1,0.05),
 col_sample_rate_per_tree_opts = seq(0.3,1,0.05)){

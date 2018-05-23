@@ -4,10 +4,10 @@
 \alias{h2o_peach}
 \title{DNN peach}
 \usage{
-h2o_peach(x, y, ntrees_opts = c(10000), max_depth_opts = seq(1, 20),
-  min_rows_opts = c(1, 5, 10, 20, 50, 100), learn_rate_opts = seq(0.001,
-  0.01, 0.001), sample_rate_opts = seq(0.3, 1, 0.05),
-  col_sample_rate_opts = seq(0.3, 1, 0.05),
+h2o_peach(x, y, train.data, test.data, ntrees_opts = c(10000),
+  max_depth_opts = seq(1, 20), min_rows_opts = c(1, 5, 10, 20, 50, 100),
+  learn_rate_opts = seq(0.001, 0.01, 0.001), sample_rate_opts = seq(0.3, 1,
+  0.05), col_sample_rate_opts = seq(0.3, 1, 0.05),
   col_sample_rate_per_tree_opts = seq(0.3, 1, 0.05))
 }
 \description{
@@ -20,9 +20,9 @@ train.data <- as.h2o(t.data1[sample1,])
 test.data <- as.h2o(t.data1[-sample1,])
 response1 <- "mean_price"
 response2 <- "trade"
-x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'')
+x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'b_prec')
 y = response2
-h2o_peach(x,y)
+h2o_peach(x,y,train.data,test.data)
 
 gbm_sorted_grid <- h2o.getGrid(grid_id = "mygrid", sort_by = "mse")
 print(gbm_sorted_grid)

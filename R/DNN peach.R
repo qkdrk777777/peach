@@ -21,7 +21,7 @@
 #' y<-as.data.frame(dnn.pred$predict)
 #'
 #' cor(x$mean_price,y$predict)^2
-#' abline(0,1,col="red")
+#'
 #' @return
 #' @export
 h2o_peach<-function(x,y,train.data, test.data,

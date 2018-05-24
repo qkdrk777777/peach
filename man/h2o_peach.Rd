@@ -15,6 +15,11 @@ DNN peach
 }
 \examples{
  set.seed(960806)
+setwd('../')
+a<-paste0(getwd(),'/Desktop')
+setwd(a)
+library(h2o)
+h2o.init()
 sample1<- sample(1:nrow(t.data1),round(nrow(t.data1)*0.8,0))
 train.data <- as.h2o(t.data1[sample1,])
 test.data <- as.h2o(t.data1[-sample1,])
@@ -23,16 +28,11 @@ response2 <- "trade"
 x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'prec1')
 y = response2
 h2o_peach(x,y,train.data,test.data)
-
-gbm_sorted_grid <- h2o.getGrid(grid_id = "mygrid", sort_by = "mse")
-print(gbm_sorted_grid)
-best_model <- h2o.getModel(gbm_sorted_grid@model_ids[[1]])
-summary(best_model)
-
-dnn.pred <- as.numeric(h2o.predict(best_model, test.data))
-
-x<-as.data.frame(test.data$mean_price)
-y<-as.data.frame(dnn.pred$predict)
+xx<-as.data.frame(test.data$mean_price)
+yy<-as.data.frame(dnn.pred$predict)
+plot(xx[,1],yy$predict,xlab=names(xx),ylab=names(yy))
+abline(0,1,col=2)
+abline(lm(yy[,1]~xx[,1]),col=4)
 
 cor(x$mean_price,y$predict)^2
 

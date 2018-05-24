@@ -78,8 +78,8 @@ ls[[2]]<-best_model
 ls[[3]]<-dnn.pred <- as.numeric(h2o.predict(best_model, test.data))
 names(ls)<-c('gbm_grid','best_model','dnn.pred')
 return(ls)
-
 }
+
 #
 # library(devtools)
 # install_github('qkdrk777777/peach')

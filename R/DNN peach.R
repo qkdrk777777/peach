@@ -22,7 +22,6 @@
 #'
 #' cor(x$mean_price,y$predict)^2
 #'
-#' @return
 #' @export
 h2o_peach<-function(x,y,train.data, test.data,
   ntrees_opts = c(1000),max_depth_opts = seq(1,10),min_rows_opts = c(1,5,10,20,50,100),

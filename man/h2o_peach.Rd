@@ -10,6 +10,9 @@ h2o_peach(x, y, train.data, test.data, ntrees_opts = c(1000),
   0.05), col_sample_rate_opts = seq(0.4, 1, 0.05),
   col_sample_rate_per_tree_opts = seq(0.4, 1, 0.05))
 }
+\value{
+list
+}
 \description{
 DNN peach
 }

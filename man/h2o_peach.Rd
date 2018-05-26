@@ -17,7 +17,8 @@ list
 DNN peach
 }
 \examples{
- set.seed(960806)
+ #ex1
+set.seed(960806)
 setwd('../')
 a<-paste0(getwd(),'/Desktop')
 setwd(a)
@@ -42,7 +43,7 @@ abline(lm(yy[,1]~xx[,1]),col=4)
 
 cor(xx$mean_price,yy$predict)^2
 
-#########################
+#ex2
 library(peach)
 library(h2o)
 h2o.init()

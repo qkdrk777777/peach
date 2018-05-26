@@ -23,20 +23,47 @@ a<-paste0(getwd(),'/Desktop')
 setwd(a)
 library(h2o)
 h2o.init()
+h2o.rm('mygrid')
+t.data1<-t.data1[-1,]
+t.data1$pre.price<- pre.price[-length(pre.price)]
 sample1<- sample(1:nrow(t.data1),round(nrow(t.data1)*0.8,0))
 train.data <- as.h2o(t.data1[sample1,])
 test.data <- as.h2o(t.data1[-sample1,])
 response1 <- "mean_price"
 response2 <- "trade"
-x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'prec1')
+x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'prec1','pre.price')
 y = response2
-h2o_peach(x,y,train.data,test.data)
+del<-h2o_peach(x,y,train.data,test.data)
 xx<-as.data.frame(test.data$mean_price)
-yy<-as.data.frame(dnn.pred$predict)
+yy<-as.data.frame(del$dnn.pred)
 plot(xx[,1],yy$predict,xlab=names(xx),ylab=names(yy))
 abline(0,1,col=2)
 abline(lm(yy[,1]~xx[,1]),col=4)
 
-cor(x$mean_price,y$predict)^2
+cor(xx$mean_price,yy$predict)^2
 
+library(peach)
+library(h2o)
+h2o.init()
+h2o.rm('mygrid')
+set.seed(960806)
+sample1<- sample(1:nrow(t.data4),round(nrow(t.data4)*0.8,0))
+
+train.data <- as.h2o(t.data4[sample1,])
+test.data <- as.h2o(t.data4[-sample1,])
+response1 <- "mean_price"
+response2 <- "trade"
+x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'prec1','pre.price')
+y = response1
+del<-h2o_peach(x,y,train.data,test.data)
+
+summary(del$best_model)
+y1<-as.data.frame(test.data$mean_price)
+x1<-as.data.frame(del$dnn.pred)
+
+cor(x1$predict,y1$mean_price)^2
+
+plot(x1$predict,y1$mean_price)
+abline(0,1,col="red")
+abline(lm(y1$mean_price~x1$predict), col="blue")
 }

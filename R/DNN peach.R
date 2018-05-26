@@ -25,7 +25,8 @@
 #'
 #' cor(xx$mean_price,yy$predict)^2
 #'
-#' @examples library(peach)
+#' #########################
+#' library(peach)
 #' library(h2o)
 #' h2o.init()
 #' h2o.rm('mygrid')

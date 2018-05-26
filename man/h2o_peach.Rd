@@ -42,6 +42,7 @@ abline(lm(yy[,1]~xx[,1]),col=4)
 
 cor(xx$mean_price,yy$predict)^2
 
+#########################
 library(peach)
 library(h2o)
 h2o.init()

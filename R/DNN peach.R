@@ -29,7 +29,6 @@ h2o_peach<-function(x,y,train.data, test.data,
 learn_rate_opts = seq(0.001,0.01,0.001),sample_rate_opts = seq(0.4,1,0.05),col_sample_rate_opts = seq(0.4,1,0.05),
 col_sample_rate_per_tree_opts = seq(0.4,1,0.05)){
   if(!require(h2o))install.packages('h2o');library(h2o)
-  h2o.init()
   library(peach)
 
 hyper_params = list( ntrees = ntrees_opts,
@@ -77,8 +76,8 @@ best_model <- h2o.getModel(gbm_sorted_grid@model_ids[[1]])
 ls<-list()
 ls[[1]]<-gbm_grid
 ls[[2]]<-best_model
-dnn.pred <- as.numeric(h2o.predict(best_model, test.data))
-ls[[3]]<-dnn.pred
+dnn.pred <- h2o.predict(best_model, test.data)
+ls[[3]]<-as.numeric(dnn.pred)
 names(ls)<-c('gbm_grid','best_model','dnn.pred')
 return(ls)
 }

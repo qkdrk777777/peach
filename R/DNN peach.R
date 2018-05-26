@@ -50,11 +50,11 @@
 #' y1<-as.data.frame(test.data$mean_price)
 #' x1<-as.data.frame(del$dnn.pred)
 
-#' plot(x1[,1],y1[,1],xlab=names(xx),ylab=names(yy))
+#' plot(x1[,1],y1[,1],xlab=names(x1),ylab=names(y1))
 #' abline(0,1,col=2)
-#' abline(lm(yy[,1]~xx[,1]),col=4)
+#' abline(lm(y1[,1]~x1[,1]),col=4)
 #'
-#' cor(xx[,1],yy[,1])^2
+#' cor(x1[,1],y1[,1])^2
 #'
 #' @return list
 #' @export

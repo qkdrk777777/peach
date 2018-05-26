@@ -8,8 +8,9 @@
 #' library(h2o)
 #' h2o.init()
 #' h2o.rm('mygrid')
-#' t.data1<-t.data1[-1,]
+#'
 #' pre.price<- t.data1$mean_price
+#' t.data1<-t.data1[-1,]
 #' t.data1$pre.price<- pre.price[-length(pre.price)]
 #' sample1<- sample(1:nrow(t.data1),round(nrow(t.data1)*0.8,0))
 #' train.data <- as.h2o(t.data1[sample1,])

@@ -77,7 +77,8 @@ best_model <- h2o.getModel(gbm_sorted_grid@model_ids[[1]])
 ls<-list()
 ls[[1]]<-gbm_grid
 ls[[2]]<-best_model
-ls[[3]]<-dnn.pred <- as.numeric(h2o.predict(best_model, test.data))
+dnn.pred <- as.numeric(h2o.predict(best_model, test.data))
+ls[[3]]<-dnn.pred
 names(ls)<-c('gbm_grid','best_model','dnn.pred')
 return(ls)
 }

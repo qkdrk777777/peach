@@ -38,13 +38,14 @@ response2 <- "trade"
 x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'prec1','pre.price')
 y = response1
 del<-h2o_peach(x,y,train.data,test.data)
-yy<-as.data.frame(test.data[,1])
+yy<-as.data.frame(test.data$mean_price)
 xx<-as.data.frame(del$dnn.pred)
 plot(xx[,1],yy[,1],xlab=names(xx),ylab=names(yy))
 abline(0,1,col=2)
 abline(lm(yy[,1]~xx[,1]),col=4)
 
 cor(xx[,1],yy[,1])^2
+
 
 #ex2
 library(peach)
@@ -63,7 +64,7 @@ y = response1
 del<-h2o_peach(x,y,train.data,test.data)
 
 summary(del$best_model)
-y1<-as.data.frame(test.data[,1])
+y1<-as.data.frame(test.data$mean_price)
 x1<-as.data.frame(del$dnn.pred)
 plot(x1[,1],y1[,1],xlab=names(xx),ylab=names(yy))
 abline(0,1,col=2)

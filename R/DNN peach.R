@@ -71,6 +71,8 @@ gbm_grid <- h2o.grid(  "gbm",
                        seed = 940910,
                        hyper_params = hyper_params,
                        search_criteria = search_criteria)
+gbm_sorted_grid <- h2o.getGrid(grid_id = "mygrid", sort_by = "mse")
+
 best_model <- h2o.getModel(gbm_sorted_grid@model_ids[[1]])
 ls<-list()
 ls[[1]]<-gbm_grid

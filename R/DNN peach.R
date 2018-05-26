@@ -9,9 +9,9 @@
 #' h2o.init()
 #' h2o.rm('mygrid')
 #'
+#'
 #' pre.price<- t.data1$mean_price
 #' t.data1<-t.data1[-1,]
-#'
 #' t.data1$pre.price<- pre.price[-length(pre.price)]
 #' sample1<- sample(1:nrow(t.data1),round(nrow(t.data1)*0.8,0))
 #' train.data <- as.h2o(t.data1[sample1,])
@@ -19,15 +19,15 @@
 #' response1 <- "mean_price"
 #' response2 <- "trade"
 #' x=c("mean_T","min_T","max_T","prec","max_ws","mean_ws","rh","light","mon","weekday","trade",'prec1','pre.price')
-#' y = response2
+#' y = response1
 #' del<-h2o_peach(x,y,train.data,test.data)
-#'xx<-as.data.frame(test.data$mean_price)
-#'yy<-as.data.frame(del$dnn.pred)
-#'plot(xx[,1],yy$predict,xlab=names(xx),ylab=names(yy))
-#'abline(0,1,col=2)
-#'abline(lm(yy[,1]~xx[,1]),col=4)
+#' yy<-as.data.frame(test.data[,1])
+#' xx<-as.data.frame(del$dnn.pred)
+#' plot(xx[,1],yy[,1],xlab=names(xx),ylab=names(yy))
+#' abline(0,1,col=2)
+#' abline(lm(yy[,1]~xx[,1]),col=4)
 #'
-#' cor(xx$mean_price,yy$predict)^2
+#' cor(xx[,1],yy[,1])^2
 #'
 #' #ex2
 #' library(peach)
@@ -46,14 +46,15 @@
 #' del<-h2o_peach(x,y,train.data,test.data)
 #'
 #' summary(del$best_model)
-#' y1<-as.data.frame(test.data$mean_price)
+#' y1<-as.data.frame(test.data[,1])
 #' x1<-as.data.frame(del$dnn.pred)
+
+#' plot(x1[,1],y1[,1],xlab=names(xx),ylab=names(yy))
+#' abline(0,1,col=2)
+#' abline(lm(yy[,1]~xx[,1]),col=4)
 #'
-#' cor(x1$predict,y1$mean_price)^2
+#' cor(xx[,1],yy[,1])^2
 #'
-#' plot(x1$predict,y1$mean_price)
-#' abline(0,1,col="red")
-#' abline(lm(y1$mean_price~x1$predict), col="blue")
 #' @return list
 #' @export
 h2o_peach<-function(x,y,train.data, test.data,

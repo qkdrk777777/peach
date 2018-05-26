@@ -77,7 +77,7 @@ ls<-list()
 ls[[1]]<-gbm_grid
 ls[[2]]<-best_model
 dnn.pred <- h2o.predict(best_model, test.data)
-ls[[3]]<-as.numeric(dnn.pred)
+ls[[3]]<-as.data.frame(dnn.pred)
 names(ls)<-c('gbm_grid','best_model','dnn.pred')
 return(ls)
 }
